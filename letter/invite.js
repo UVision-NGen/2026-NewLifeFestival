@@ -82,6 +82,7 @@
 .nlf-map text{fill:var(--m-text-sub,#857e73);font-size:28px;letter-spacing:-.5px;paint-order:stroke;stroke:var(--m-halo,var(--m-bg,#f4f1ea));stroke-width:8px;stroke-linejoin:round}
 .nlf-map .m-strong{fill:var(--m-text,#3d3731);font-size:34px;font-weight:700}
 .nlf-map .m-park-label{fill:var(--m-park-text,#5f7f4a)}
+.nlf-map .m-stop{font-size:25px;font-weight:700;fill:var(--m-text,#3d3731)}
 .nlf-map .m-roadname{font-size:26px;fill:var(--m-text-sub,#857e73)}
 .nlf-map .m-route{fill:none;stroke:var(--m-route,var(--m-accent,#e2574c));stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1 15;animation:nlfm-walk 1s linear infinite}
 .nlf-map .m-halo{fill:var(--m-accent,#e2574c);transform-box:fill-box;transform-origin:center;animation:nlfm-pulse 2.4s ease-out infinite}
@@ -293,7 +294,7 @@ ${minor.map((id) => fill(id, 'm-minor')).join('')}${fill('nlfm-n', 'm-mid')}${ma
 <text class="m-roadname" transform="translate(1160,436) rotate(65)" dy="9" text-anchor="middle">용현로</text>
 <g transform="translate(585,453)"><rect class="m-bus" x="-18" y="-18" width="36" height="36" rx="9"/><path class="m-bus-glyph" d="M-10,-11 h20 a3,3 0 0 1 3,3 v15 h-26 v-15 a3,3 0 0 1 3,-3 Z M-8,-7 v6 h16 v-6 Z M-11,8 h5 v4 h-5 Z M6,8 h5 v4 h-5 Z"/></g>
 <g transform="translate(752,466)"><rect class="m-bus" x="-18" y="-18" width="36" height="36" rx="9"/><path class="m-bus-glyph" d="M-10,-11 h20 a3,3 0 0 1 3,3 v15 h-26 v-15 a3,3 0 0 1 3,-3 Z M-8,-7 v6 h16 v-6 Z M-11,8 h5 v4 h-5 Z M6,8 h5 v4 h-5 Z"/></g>
-<text x="776" y="440">버스정류장</text>
+<text class="m-stop" x="772" y="441">대림e편한세상.나눔의샘</text>
 <g class="m-north" transform="translate(484,166)"><circle r="30"/><path d="M0,-20 L10,8 L0,2 L-10,8 Z"/><text y="24" text-anchor="middle" dy="-2">N</text></g>
 <circle class="m-halo" cx="668" cy="560" r="44"/>
 ${pin}
