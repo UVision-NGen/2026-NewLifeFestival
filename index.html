@@ -44,6 +44,14 @@ h1{margin-top:10px;font-size:clamp(28px,6vw,40px);line-height:1.25;letter-spacin
 .acts{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:12px}
 .open{display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:12px;background:var(--ink);color:#fff;font-weight:700;font-size:14px}
 .copy{min-height:44px;padding:0 14px;border-radius:12px;border:1px solid var(--line);font-size:13.5px}
+.to-box{margin-top:28px;max-width:560px;padding:18px 20px;border-radius:20px;background:var(--card);border:1px solid var(--line)}
+.to-box label{display:block;font-size:14px;font-weight:800}
+.to-row{position:relative;margin-top:10px}
+.to-row input{width:100%;height:52px;padding:0 44px 0 16px;border-radius:14px;border:2px solid var(--line);background:var(--bg);font:inherit;font-size:16px;outline:none}
+.to-row input:focus{border-color:var(--accent)}
+.to-row button{position:absolute;right:6px;top:6px;width:40px;height:40px;font-size:22px;color:var(--sub)}
+.to-box p{margin-top:8px;font-size:13px;color:var(--sub)}
+.to-box p b{color:var(--accent)}
 .tip{margin-top:40px;padding:22px 22px;border-radius:20px;background:var(--card);border:1px solid var(--line)}
 .tip h3{font-size:16px}
 .tip p{margin-top:6px;color:var(--sub);font-size:14px}
@@ -62,13 +70,17 @@ h1{margin-top:10px;font-size:clamp(28px,6vw,40px);line-height:1.25;letter-spacin
     <p class="lede">휴대폰으로 열어 보면 가장 정확해요. 마음에 드는 초대장의 링크를 복사해서 친구에게 보내 주세요.</p>
   </header>
 
+  <section class="to-box">
+    <label for="toName">받는 사람</label>
+    <div class="to-row">
+      <input id="toName" type="text" maxlength="12" autocomplete="off" placeholder="이름을 적으면 초대장에 들어가요 (예: 민수)">
+      <button type="button" id="toClear" aria-label="이름 지우기" hidden>×</button>
+    </div>
+    <p id="toHint">이름을 비워 두면 누구에게나 보낼 수 있는 기본 링크가 복사돼요.</p>
+  </section>
+
   <ul class="grid" id="grid"></ul>
 
-  <section class="tip">
-    <h3>받는 사람 이름을 넣어 보내기</h3>
-    <p>주소 뒤에 <b>?to=이름</b>을 붙이면 초대장 곳곳에 받는 사람의 이름이 들어가요. 공유 버튼으로 다시 퍼질 때는 이름이 빠진 주소로 공유됩니다.</p>
-    <code>https://uvision-ngen.github.io/2026-NewLifeFestival/letter/?to=민수</code>
-  </section>
   <p class="foot">© 2026 의정부비전교회 청년부 · 문의 박성진 강도사 010-5501-4328 / 이일규 장로 010-5746-1735</p>
 </main>
 <div class="toast" id="toast" role="status"></div>
@@ -91,11 +103,11 @@ h1{margin-top:10px;font-size:clamp(28px,6vw,40px);line-height:1.25;letter-spacin
     const li = document.createElement('li');
     li.className = 'card';
     li.innerHTML = `
-      <a class="thumb" href="${slug}/"><img src="thumbs/${slug}.jpg" alt="" loading="lazy"><span class="num">${String(i + 1).padStart(2, '0')}</span></a>
+      <a class="thumb" data-slug="${slug}" href="${slug}/"><img src="thumbs/${slug}.jpg" alt="" loading="lazy"><span class="num">${String(i + 1).padStart(2, '0')}</span></a>
       <div class="body">
         <h2></h2><p></p>
         <span class="slug">/${slug}/</span>
-        <div class="acts"><a class="open" href="${slug}/">초대장 열기</a><button class="copy" type="button" data-url="${base}${slug}/">링크 복사</button></div>
+        <div class="acts"><a class="open" data-slug="${slug}" href="${slug}/">초대장 열기</a><button class="copy" type="button" data-url="${base}${slug}/">링크 복사</button></div>
       </div>`;
     li.querySelector('h2').textContent = title;
     li.querySelector('p').textContent = desc;
@@ -104,15 +116,39 @@ h1{margin-top:10px;font-size:clamp(28px,6vw,40px);line-height:1.25;letter-spacin
   });
   const toast = document.getElementById('toast');
   let t;
+  const toInput = document.getElementById('toName');
+  const toClear = document.getElementById('toClear');
+  const toHint = document.getElementById('toHint');
+  const DEFAULT_HINT = toHint.textContent;
+  // 초대장(invite.js)이 받아들이는 형태로 정리: 특수문자 제거, 최대 12자
+  const guestName = () => toInput.value.replace(/[<>&"'`]/g, '').trim().slice(0, 12);
+  const withName = (url) => (guestName() ? `${url}?to=${encodeURIComponent(guestName())}` : url);
+  function syncName() {
+    const name = guestName();
+    toClear.hidden = !toInput.value;
+    if (name) {
+      toHint.textContent = '';
+      const b = document.createElement('b');
+      b.textContent = name;
+      toHint.append(b, '님에게 보낼 링크가 복사돼요. 초대장 열기로 미리 볼 수 있어요.');
+    } else {
+      toHint.textContent = DEFAULT_HINT;
+    }
+    grid.querySelectorAll('a[data-slug]').forEach((a) => { a.href = withName(`${a.dataset.slug}/`); });
+  }
+  toInput.addEventListener('input', syncName);
+  toClear.addEventListener('click', () => { toInput.value = ''; syncName(); toInput.focus(); });
+
   grid.addEventListener('click', async (e) => {
     const b = e.target.closest('.copy');
     if (!b) return;
-    try { await navigator.clipboard.writeText(b.dataset.url); } catch {
-      const ta = document.createElement('textarea'); ta.value = b.dataset.url; document.body.appendChild(ta); ta.select();
+    const url = withName(b.dataset.url);
+    try { await navigator.clipboard.writeText(url); } catch {
+      const ta = document.createElement('textarea'); ta.value = url; document.body.appendChild(ta); ta.select();
       try { document.execCommand('copy'); } catch { /* 복사를 지원하지 않는 브라우저 */ }
       ta.remove();
     }
-    toast.textContent = '링크를 복사했어요';
+    toast.textContent = guestName() ? `${guestName()}님에게 보낼 링크를 복사했어요` : '링크를 복사했어요';
     toast.classList.add('on');
     clearTimeout(t);
     t = setTimeout(() => toast.classList.remove('on'), 2000);
