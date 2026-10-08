@@ -77,6 +77,7 @@
 .nlf-map .m-road{stroke:var(--m-road,#fff)}
 .nlf-map .m-major.m-case{stroke-width:46}.nlf-map .m-major.m-road{stroke-width:38}
 .nlf-map .m-minor.m-case{stroke-width:22}.nlf-map .m-minor.m-road{stroke-width:15}
+.nlf-map .m-mid.m-case{stroke-width:34}.nlf-map .m-mid.m-road{stroke-width:27}
 .nlf-map .m-target{fill:var(--m-target,rgba(226,87,76,.22));stroke:var(--m-accent,#e2574c);stroke-width:3}
 .nlf-map text{fill:var(--m-text-sub,#857e73);font-size:28px;letter-spacing:-.5px;paint-order:stroke;stroke:var(--m-halo,var(--m-bg,#f4f1ea));stroke-width:8px;stroke-linejoin:round}
 .nlf-map .m-strong{fill:var(--m-text,#3d3731);font-size:34px;font-weight:700}
@@ -260,7 +261,7 @@
       : '<path class="m-pin" d="M668,568 C656,550 636,534 636,507 A32,32 0 1 1 700,507 C700,534 680,550 668,568 Z"/><circle class="m-pin-dot" cx="668" cy="507" r="12"/>';
     const road = (id, cls) => `<use href="#${id}" class="m-case ${cls}"/>`;
     const fill = (id, cls) => `<use href="#${id}" class="m-road ${cls}"/>`;
-    const minor = ['nlfm-w', 'nlfm-n', 'nlfm-e', 'nlfm-d2'];
+    const minor = ['nlfm-w', 'nlfm-e', 'nlfm-d2'];
     const major = ['nlfm-c', 'nlfm-d', 'nlfm-a'];
     return `<svg class="nlf-map" viewBox="440 120 760 760" role="img" aria-label="의정부비전교회 주변 약도">
 <defs>
@@ -268,37 +269,37 @@
 <path id="nlfm-d" d="M965,488 L830,603 L738,691 L650,782 L610,880 L590,930"/>
 <path id="nlfm-d2" d="M965,488 C995,465 1020,457 1060,452 L1166,438"/>
 <path id="nlfm-c" d="M400,505 C445,494 505,494 545,507 C572,518 590,545 606,568 L650,625 C676,656 700,675 738,691 L1117,930"/>
-<path id="nlfm-w" d="M606,568 L630,500 L655,428"/>
-<path id="nlfm-n" d="M440,412 L655,428 L825,442 L1010,458"/>
-<path id="nlfm-e" d="M724,686 L760,540 L825,442"/>
+<path id="nlfm-w" d="M606,568 L630,500 L646,460"/>
+<path id="nlfm-n" d="M440,440 L560,450 L668,462 L825,470 L1010,474"/>
+<path id="nlfm-e" d="M724,686 L760,540 L825,470"/>
 </defs>
 <rect class="m-bg" x="440" y="120" width="760" height="760"/>
 <path class="m-public" d="M1018,100 L1240,100 L1240,302 L1146,330 L1078,262 Z"/>
 <path class="m-public" d="M782,240 L976,272 L996,432 L842,426 L800,412 Z"/>
-<path class="m-park" d="M832,472 L886,466 L934,486 L814,584 L788,556 Z"/>
+<path class="m-park" d="M836,492 L886,490 L934,504 L814,584 L792,560 Z"/>
 <path class="m-park" d="M915,700 L1010,640 L1150,650 L1240,676 L1240,930 L1160,930 L1060,852 L935,775 Z"/>
 <path class="m-apt" d="M400,540 C450,528 505,526 545,540 C570,552 588,575 606,600 L650,652 C664,668 676,690 688,708 L628,778 L590,872 L572,930 L400,930 Z"/>
-${minor.map((id) => road(id, 'm-minor')).join('')}${major.map((id) => road(id, 'm-major')).join('')}
-${minor.map((id) => fill(id, 'm-minor')).join('')}${major.map((id) => fill(id, 'm-major')).join('')}
+${minor.map((id) => road(id, 'm-minor')).join('')}${road('nlfm-n', 'm-mid')}${major.map((id) => road(id, 'm-major')).join('')}
+${minor.map((id) => fill(id, 'm-minor')).join('')}${fill('nlfm-n', 'm-mid')}${major.map((id) => fill(id, 'm-major')).join('')}
 <path class="m-target" d="M636,498 L708,512 L700,600 L676,612 L640,560 Z"/>
-<path class="m-route" d="M800,660 L744,704 L692,664 L684,614"/>
+<path class="m-route" d="M585,453 L668,462 M752,466 L668,462 L668,500"/>
 <text x="1112" y="206" text-anchor="middle">민락중학교</text>
 <text x="905" y="168" text-anchor="middle">민락동우체국</text>
 <text class="m-strong" x="895" y="352" text-anchor="middle">KT</text>
-<text x="520" y="384" text-anchor="middle">세븐일레븐</text>
-<text x="528" y="484" text-anchor="middle">시온성교회</text>
+<text x="520" y="512" text-anchor="middle">시온성교회</text>
 <text class="m-park-label" x="866" y="530" text-anchor="middle">승지문화공원</text>
 <text class="m-park-label" x="1070" y="764" text-anchor="middle">오목문화근린공원</text>
 <text x="548" y="716" text-anchor="middle">민락e편한세상</text>
 <text class="m-roadname" transform="translate(1160,436) rotate(65)" dy="9" text-anchor="middle">용현로</text>
-<g transform="translate(818,670)"><rect class="m-bus" x="-18" y="-18" width="36" height="36" rx="9"/><path class="m-bus-glyph" d="M-10,-11 h20 a3,3 0 0 1 3,3 v15 h-26 v-15 a3,3 0 0 1 3,-3 Z M-8,-7 v6 h16 v-6 Z M-11,8 h5 v4 h-5 Z M6,8 h5 v4 h-5 Z"/></g>
-<text x="844" y="681">버스정류장</text>
+<g transform="translate(585,453)"><rect class="m-bus" x="-18" y="-18" width="36" height="36" rx="9"/><path class="m-bus-glyph" d="M-10,-11 h20 a3,3 0 0 1 3,3 v15 h-26 v-15 a3,3 0 0 1 3,-3 Z M-8,-7 v6 h16 v-6 Z M-11,8 h5 v4 h-5 Z M6,8 h5 v4 h-5 Z"/></g>
+<g transform="translate(752,466)"><rect class="m-bus" x="-18" y="-18" width="36" height="36" rx="9"/><path class="m-bus-glyph" d="M-10,-11 h20 a3,3 0 0 1 3,3 v15 h-26 v-15 a3,3 0 0 1 3,-3 Z M-8,-7 v6 h16 v-6 Z M-11,8 h5 v4 h-5 Z M6,8 h5 v4 h-5 Z"/></g>
+<text x="776" y="440">버스정류장</text>
 <g class="m-north" transform="translate(484,166)"><circle r="30"/><path d="M0,-20 L10,8 L0,2 L-10,8 Z"/><text y="24" text-anchor="middle" dy="-2">N</text></g>
 <circle class="m-halo" cx="668" cy="560" r="44"/>
 ${pin}
-<rect class="m-callout" x="536" y="396" width="264" height="56" rx="28"/>
-<path class="m-callout" d="M656,450 L668,466 L680,450 Z"/>
-<text class="m-callout-text" x="668" y="435" text-anchor="middle">의정부비전교회</text>
+<rect class="m-callout" x="536" y="332" width="264" height="56" rx="28"/>
+<path class="m-callout" d="M656,386 L668,402 L680,386 Z"/>
+<text class="m-callout-text" x="668" y="371" text-anchor="middle">의정부비전교회</text>
 </svg>`;
   }
 
