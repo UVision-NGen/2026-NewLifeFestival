@@ -56,14 +56,14 @@ img{display:block;max-width:100%}
 .choice:first-child{background:var(--yellow);color:var(--ink);border-color:var(--ink)}
 .controls{position:absolute;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;align-items:flex-end;padding:0 14px;pointer-events:none;transition:opacity .2s}
 .is-talking .controls{opacity:0}
-.pad{display:grid;grid-template-columns:repeat(3,50px);grid-template-rows:repeat(3,50px);pointer-events:auto}
-.pad button{background:rgba(43,36,64,.72);border:2px solid rgba(247,245,255,.85);color:var(--white);font-size:16px;line-height:1}
-.pad button:active,.pad button.is-down{background:var(--yellow);color:var(--ink)}
-.pad .u{grid-area:1/2;border-radius:8px 8px 0 0}
-.pad .l{grid-area:2/1;border-radius:8px 0 0 8px}
-.pad .r{grid-area:2/3;border-radius:0 8px 8px 0}
-.pad .d{grid-area:3/2;border-radius:0 0 8px 8px}
-.pad .c{grid-area:2/2;background:rgba(43,36,64,.72);border-top:0;border-bottom:0}
+.stick{position:absolute;z-index:3;display:none;width:112px;height:112px;margin:-56px 0 0 -56px;border-radius:50%;background:rgba(43,36,64,.38);border:3px solid rgba(247,245,255,.85);box-shadow:0 0 0 3px rgba(43,36,64,.45);pointer-events:none}
+.stick.is-on{display:block}
+.knob{position:absolute;left:50%;top:50%;width:50px;height:50px;margin:-25px 0 0 -25px;border-radius:50%;background:var(--yellow);border:3px solid var(--ink);box-shadow:inset 0 -4px 0 rgba(43,36,64,.25),0 3px 0 var(--ink)}
+.stick-hint{position:relative;width:112px;height:112px;margin-bottom:22px;border-radius:50%;border:3px dashed rgba(247,245,255,.8);background:rgba(43,36,64,.28);transition:opacity .4s}
+.stick-hint .knob{animation:hintmove 2.4s ease-in-out infinite}
+.stick-hint small{position:absolute;left:0;right:0;bottom:-24px;text-align:center;font-size:11px;color:var(--white);text-shadow:1px 1px 0 var(--ink)}
+@keyframes hintmove{0%,100%{transform:none}25%{transform:translate(22px,-14px)}60%{transform:translate(-18px,10px)}}
+.stick-hint.is-used{opacity:0}
 .abtn{width:78px;height:78px;margin-bottom:12px;border-radius:50%;background:var(--coral);border:3px solid var(--white);box-shadow:0 0 0 3px var(--ink),0 6px 0 3px var(--ink);font-family:var(--px14);font-size:26px;color:var(--white);pointer-events:auto}
 .abtn:active{transform:translateY(4px);box-shadow:0 0 0 3px var(--ink),0 2px 0 3px var(--ink)}
 .abtn.is-ready{animation:ready .8s steps(2) infinite}
@@ -157,14 +157,9 @@ img{display:block;max-width:100%}
       <button class="box hbtn" type="button" id="skipBtn">초대장</button>
     </div>
   </div>
+  <div class="stick" id="stick" aria-hidden="true"><span class="knob" id="knob"></span></div>
   <div class="controls" id="controls">
-    <div class="pad" id="pad">
-      <button class="u" type="button" data-dir="up" aria-label="위로">▲</button>
-      <button class="l" type="button" data-dir="left" aria-label="왼쪽으로">◀</button>
-      <span class="c"></span>
-      <button class="r" type="button" data-dir="right" aria-label="오른쪽으로">▶</button>
-      <button class="d" type="button" data-dir="down" aria-label="아래로">▼</button>
-    </div>
+    <div class="stick-hint" id="stickHint" aria-hidden="true"><span class="knob"></span><small>끌어서 이동</small></div>
     <button class="abtn" type="button" id="aBtn" aria-label="말 걸기">A<small>말걸기</small></button>
   </div>
   <div class="dialog" id="dialog" role="dialog" aria-live="polite" hidden>
@@ -673,8 +668,8 @@ img{display:block;max-width:100%}
   let VW = 160; let VH = 300;
   const DIRS = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] };
   const S = {
-    mode: 'title', p: { x: 17, y: 27, fx: 17, fy: 27, dir: 'up', moving: false, t: 0, phase: 0 },
-    held: null, needRelease: false, path: [], after: null, stars: new Set(), talked: new Set(), cam: { x: 0, y: 0 }, target: null, cleared: false,
+    mode: 'title', p: { x: 17, y: 27, px: 17 * 16 + 8, py: 27 * 16 + 12, dir: 'up', moving: false, phase: 0, walked: 0 },
+    path: [], after: null, stars: new Set(), talked: new Set(), cam: { x: 0, y: 0 }, target: null, cleared: false,
   };
 
   function buildMap() {
@@ -735,8 +730,9 @@ img{display:block;max-width:100%}
     return new Promise((resolve) => {
       dlg = { name, lines, i: 0, choices, resolve, typing: false };
       S.mode = 'dialog';
-      S.held = null;
-      S.path = [];
+      endJoy();
+      keys.clear();
+      clearPath();
       game.classList.add('is-talking');
       dlgEl.hidden = false;
       showLine();
@@ -789,7 +785,6 @@ img{display:block;max-width:100%}
     dlgEl.hidden = true;
     game.classList.remove('is-talking');
     S.mode = 'play';
-    S.needRelease = true;
     resolve(value);
   }
   dlgEl.addEventListener('click', advance);
@@ -806,25 +801,114 @@ img{display:block;max-width:100%}
   }
   function setQuest(t) { document.getElementById('quest').textContent = `QUEST · ${t}`; }
 
-  /* ================= 이동 ================= */
-  const STEP_MS = 150;
-  function tryStep(dir) {
+  /* ================= 이동 (조이스틱 · 자유 이동) ================= */
+  const SPEED = 64; // 기본 해상도 기준 초당 픽셀
+  const HB = { l: 5, r: 5, t: 4, b: 2 }; // 발밑 충돌 상자
+  function placeAt(tx, ty) {
     const p = S.p;
-    p.dir = dir;
-    const [dx, dy] = DIRS[dir];
-    const nx = p.x + dx; const ny = p.y + dy;
-    const n = npcAt(nx, ny);
-    if (n) { talk(thingAt(nx, ny)); return false; }
-    if (MAP[ny] && MAP[ny][nx] === 'S') { talk(SIGN); return false; }
-    if (!walkable(nx, ny)) return false;
-    p.fx = p.x; p.fy = p.y; p.x = nx; p.y = ny; p.moving = true; p.t = 0;
-    return true;
+    p.px = tx * T + 8; p.py = ty * T + 12; p.x = tx; p.y = ty;
   }
-  function arrived() {
+  function blockedAt(px, py) {
+    const x0 = Math.floor((px - HB.l) / T); const x1 = Math.floor((px + HB.r - 0.01) / T);
+    const y0 = Math.floor((py - HB.t) / T); const y1 = Math.floor((py + HB.b - 0.01) / T);
+    for (let y = y0; y <= y1; y += 1) for (let x = x0; x <= x1; x += 1) if (!walkable(x, y)) return { x, y };
+    return null;
+  }
+  // 모서리에 살짝 걸리면 옆으로 밀어 통로에 맞춰 준다
+  function nudge(px, py, axis, amount) {
+    for (let off = 1; off <= 7; off += 1) {
+      for (const s of [-1, 1]) {
+        const ox = axis === 0 ? 0 : s * off; const oy = axis === 0 ? s * off : 0;
+        const ax = axis === 0 ? amount : 0; const ay = axis === 1 ? amount : 0;
+        if (!blockedAt(px + ox, py + oy) && !blockedAt(px + ox + ax, py + oy + ay)) {
+          const step = s * Math.min(Math.abs(amount), off);
+          return axis === 0 ? [0, step] : [step, 0];
+        }
+      }
+    }
+    return [0, 0];
+  }
+  function moveBy(dx, dy, straightX, straightY) {
     const p = S.p;
-    p.phase ^= 1;
-    const si = STARS.findIndex((s) => s.x === p.x && s.y === p.y);
-    if (si >= 0 && !S.stars.has(si)) {
+    let hit = null;
+    if (dx) {
+      const b = blockedAt(p.px + dx, p.py);
+      if (!b) p.px += dx;
+      else {
+        hit = b;
+        if (straightX) { const [, ny] = nudge(p.px, p.py, 0, dx); if (ny && !blockedAt(p.px, p.py + ny)) p.py += ny; }
+      }
+    }
+    if (dy) {
+      const b = blockedAt(p.px, p.py + dy);
+      if (!b) p.py += dy;
+      else {
+        hit = hit || b;
+        if (straightY) { const [nx] = nudge(p.px, p.py, 1, dy); if (nx && !blockedAt(p.px + nx, p.py)) p.px += nx; }
+      }
+    }
+    p.x = Math.floor(p.px / T); p.y = Math.floor(p.py / T);
+    return hit;
+  }
+
+  const joy = { id: null, active: false, sx: 0, sy: 0, vx: 0, vy: 0 };
+  const keys = new Set();
+  function inputVector() {
+    if (joy.active) return [joy.vx, joy.vy];
+    let x = 0; let y = 0;
+    keys.forEach((d) => { x += DIRS[d][0]; y += DIRS[d][1]; });
+    const l = Math.hypot(x, y);
+    return l ? [x / l, y / l] : [0, 0];
+  }
+  function clearPath() { S.path = []; S.after = null; S.target = null; }
+
+  let bumpCool = 0;
+  function update(dt) {
+    const p = S.p;
+    p.moving = false;
+    bumpCool -= dt;
+    if (S.mode !== 'play') return;
+    let [vx, vy] = inputVector();
+    const manual = !!(vx || vy);
+    let limit = Infinity;
+    if (manual && S.path.length) clearPath();
+    if (!manual && S.path.length) {
+      const [wx, wy] = S.path[0];
+      const dx = wx - p.px; const dy = wy - p.py; const d = Math.hypot(dx, dy);
+      if (d < 0.6) {
+        p.px = wx; p.py = wy; p.x = Math.floor(wx / T); p.y = Math.floor(wy / T);
+        S.path.shift();
+        if (!S.path.length && S.after) { const a = S.after; S.after = null; a(); }
+        checkTile();
+        return;
+      }
+      vx = dx / d; vy = dy / d; limit = d;
+    }
+    const mag = Math.min(1, Math.hypot(vx, vy));
+    if (!mag) return;
+    const len = Math.hypot(vx, vy);
+    const ux = vx / len; const uy = vy / len;
+    const dist = Math.min(limit, (SPEED * mag * dt) / 1000);
+    p.dir = Math.abs(ux) > Math.abs(uy) ? (ux > 0 ? 'right' : 'left') : (uy > 0 ? 'down' : 'up');
+    const bx = p.px; const by = p.py;
+    const hit = moveBy(ux * dist, uy * dist, Math.abs(uy) < 0.4, Math.abs(ux) < 0.4);
+    const moved = Math.hypot(p.px - bx, p.py - by);
+    if (moved > 0.01) {
+      p.moving = true;
+      p.walked += moved;
+      if (p.walked > 6) { p.walked = 0; p.phase ^= 1; }
+    }
+    if (hit && manual && bumpCool <= 0) {
+      const thing = thingAt(hit.x, hit.y);
+      const fresh = thing && (thing.npc ? !S.talked.has(thing.npc.id) : MAP[hit.y][hit.x] === 'S');
+      if (fresh) { bumpCool = 800; faceTowards(hit.x, hit.y); talk(thing); return; }
+    }
+    checkTile();
+  }
+  function checkTile() {
+    const p = S.p;
+    const si = STARS.findIndex((s, i) => !S.stars.has(i) && Math.hypot(s.x * T + 8 - p.px, s.y * T + 10 - p.py) < 9);
+    if (si >= 0) {
       S.stars.add(si);
       document.getElementById('starCount').textContent = S.stars.size;
       const lines = [`별 조각을 주웠다! (${S.stars.size}/3)`, `“${STARS[si].msg}”`];
@@ -832,60 +916,68 @@ img{display:block;max-width:100%}
       say('★ 별 조각', lines);
       return;
     }
-    if (isDoor(p.x, p.y)) { enterChurch(); return; }
-    if (S.path.length) { const d = S.path.shift(); if (!tryStep(d)) S.path = []; return; }
-    if (S.after) { const a = S.after; S.after = null; a(); return; }
-    if (S.held && !S.needRelease) tryStep(S.held);
+    if (isDoor(p.x, p.y)) enterChurch();
   }
   function bfs(tx, ty, adjacentOnly) {
     const key = (x, y) => y * MW + x;
-    const prev = new Map([[key(S.p.x, S.p.y), null]]);
+    const start = key(S.p.x, S.p.y);
+    const prev = new Map([[start, null]]);
     const q = [[S.p.x, S.p.y]];
     const goal = (x, y) => (adjacentOnly ? Math.abs(x - tx) + Math.abs(y - ty) === 1 : x === tx && y === ty);
     while (q.length) {
       const [x, y] = q.shift();
       if (goal(x, y)) {
-        const steps = [];
+        const pts = [];
         let k = key(x, y);
-        while (prev.get(k)) { const [d, pk] = prev.get(k); steps.unshift(d); k = pk; }
-        return steps;
+        while (k !== null) { pts.unshift([(k % MW) * T + 8, Math.floor(k / MW) * T + 12]); k = prev.get(k); }
+        return pts;
       }
-      for (const [d, [dx, dy]] of Object.entries(DIRS)) {
+      for (const [dx, dy] of Object.values(DIRS)) {
         const nx = x + dx; const ny = y + dy; const nk = key(nx, ny);
         if (prev.has(nk) || !walkable(nx, ny)) continue;
-        prev.set(nk, [d, key(x, y)]);
+        prev.set(nk, key(x, y));
         q.push([nx, ny]);
       }
     }
     return null;
   }
   function faceTowards(tx, ty) {
-    const dx = tx - S.p.x; const dy = ty - S.p.y;
+    const dx = tx * T + 8 - S.p.px; const dy = ty * T + 12 - S.p.py;
     S.p.dir = Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up');
   }
   function walkTo(tx, ty) {
     const thing = thingAt(tx, ty);
     if (thing) {
       if (Math.abs(tx - S.p.x) + Math.abs(ty - S.p.y) === 1) { faceTowards(tx, ty); talk(thing); return; }
-      const steps = bfs(tx, ty, true);
-      if (!steps) return;
+      const pts = bfs(tx, ty, true);
+      if (!pts) return;
       S.target = { x: tx, y: ty };
-      S.path = steps;
+      S.path = pts;
       S.after = () => { faceTowards(tx, ty); S.target = null; talk(thingAt(tx, ty)); };
     } else {
-      const steps = bfs(tx, ty, false);
-      if (!steps || !steps.length) return;
+      const pts = bfs(tx, ty, false);
+      if (!pts) return;
       S.target = { x: tx, y: ty };
-      S.path = steps;
+      S.path = pts;
       S.after = () => { S.target = null; };
     }
-    if (!S.p.moving && S.path.length) { const d = S.path.shift(); if (!tryStep(d)) S.path = []; }
+  }
+  // 바라보는 방향의 대상, 없으면 바로 곁의 NPC
+  function nearbyThing() {
+    const p = S.p;
+    const [dx, dy] = DIRS[p.dir];
+    const probe = dy < 0 ? 14 : dy > 0 ? 7 : 10;
+    const t = thingAt(Math.floor((p.px + dx * probe) / T), Math.floor((p.py - 2 + dy * probe) / T));
+    if (t) return t;
+    const n = NPCS.find((m) => Math.hypot(m.x * T + 8 - p.px, m.y * T + 12 - p.py) < 20);
+    return n ? thingAt(n.x, n.y) : null;
   }
   function interact() {
     if (S.mode === 'dialog') { advance(); return; }
     if (S.mode !== 'play') return;
-    const [dx, dy] = DIRS[S.p.dir];
-    talk(thingAt(S.p.x + dx, S.p.y + dy));
+    const t = nearbyThing();
+    if (t && t.npc) faceTowards(t.npc.x, t.npc.y);
+    talk(t);
   }
 
   /* ================= 입력 ================= */
@@ -894,31 +986,63 @@ img{display:block;max-width:100%}
     if (game.hidden) return;
     if (S.mode === 'title' && (e.code === 'Enter' || e.code === 'Space')) { e.preventDefault(); start(); return; }
     const d = KEYS[e.code];
-    if (d) { e.preventDefault(); S.held = d; S.needRelease = false; S.path = []; S.after = null; S.target = null; if (S.mode === 'play' && !S.p.moving) tryStep(d); return; }
+    if (d) { e.preventDefault(); keys.add(d); if (!e.repeat) clearPath(); return; }
     if (['Space', 'Enter', 'KeyZ', 'KeyJ'].includes(e.code)) { e.preventDefault(); if (!e.repeat) interact(); }
   });
-  addEventListener('keyup', (e) => { if (KEYS[e.code] === S.held) S.held = null; });
-  document.querySelectorAll('#pad [data-dir]').forEach((btn) => {
-    const d = btn.dataset.dir;
-    btn.addEventListener('pointerdown', (e) => {
-      e.preventDefault();
-      btn.setPointerCapture(e.pointerId);
-      btn.classList.add('is-down');
-      S.held = d; S.needRelease = false; S.path = []; S.after = null; S.target = null;
-      if (S.mode === 'play' && !S.p.moving) tryStep(d);
-    });
-    const up = () => { btn.classList.remove('is-down'); if (S.held === d) S.held = null; };
-    btn.addEventListener('pointerup', up);
-    btn.addEventListener('pointercancel', up);
-    btn.addEventListener('lostpointercapture', up);
-  });
+  addEventListener('keyup', (e) => { const d = KEYS[e.code]; if (d) keys.delete(d); });
+  addEventListener('blur', () => keys.clear());
+
   const aBtn = document.getElementById('aBtn');
   aBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); interact(); });
-  let downAt = null;
-  cv.addEventListener('pointerdown', (e) => { downAt = { x: e.clientX, y: e.clientY }; });
-  cv.addEventListener('pointerup', (e) => {
-    if (!downAt || Math.hypot(e.clientX - downAt.x, e.clientY - downAt.y) > 12) return;
-    downAt = null;
+
+  // 화면 어디든 눌러서 끌면 그 자리에 조이스틱이 생긴다. 짧게 톡 누르면 그곳으로 걸어간다.
+  const stick = document.getElementById('stick');
+  const knob = document.getElementById('knob');
+  const hint = document.getElementById('stickHint');
+  const R = 46;
+  function placeStick() {
+    const r = game.getBoundingClientRect();
+    stick.style.left = `${joy.sx - r.left}px`;
+    stick.style.top = `${joy.sy - r.top}px`;
+  }
+  function endJoy() {
+    joy.id = null; joy.active = false; joy.vx = 0; joy.vy = 0;
+    stick.classList.remove('is-on');
+    knob.style.transform = '';
+  }
+  cv.addEventListener('pointerdown', (e) => {
+    if (joy.id !== null) return;
+    joy.id = e.pointerId; joy.sx = e.clientX; joy.sy = e.clientY; joy.active = false;
+    try { cv.setPointerCapture(e.pointerId); } catch { /* 캡처 불가 */ }
+  });
+  cv.addEventListener('pointermove', (e) => {
+    if (e.pointerId !== joy.id || S.mode !== 'play') return;
+    let dx = e.clientX - joy.sx; let dy = e.clientY - joy.sy;
+    let d = Math.hypot(dx, dy);
+    if (!joy.active) {
+      if (d < 10) return;
+      joy.active = true;
+      clearPath();
+      placeStick();
+      stick.classList.add('is-on');
+      hint.classList.add('is-used');
+    }
+    if (d > R) {
+      joy.sx += (dx / d) * (d - R); joy.sy += (dy / d) * (d - R);
+      placeStick();
+      dx = e.clientX - joy.sx; dy = e.clientY - joy.sy; d = R;
+    }
+    const k = d / R;
+    const m = k < 0.15 ? 0 : 0.45 + 0.55 * ((k - 0.15) / 0.85);
+    joy.vx = (dx / (d || 1)) * m; joy.vy = (dy / (d || 1)) * m;
+    knob.style.transform = `translate(${dx}px, ${dy}px)`;
+  });
+  function release(e) {
+    if (e.pointerId !== joy.id) return;
+    const wasActive = joy.active;
+    const moved = Math.hypot(e.clientX - joy.sx, e.clientY - joy.sy);
+    endJoy();
+    if (wasActive || moved > 12 || e.type === 'pointercancel') return;
     if (S.mode === 'dialog') { advance(); return; }
     if (S.mode !== 'play') return;
     const r = cv.getBoundingClientRect();
@@ -926,9 +1050,10 @@ img{display:block;max-width:100%}
     const wy = ((e.clientY - r.top) / r.height) * VH + S.cam.y;
     const tx = Math.floor(wx / T); const ty = Math.floor(wy / T);
     if (tx < 0 || ty < 0 || tx >= MW || ty >= MH) return;
-    S.held = null;
     walkTo(tx, ty);
-  });
+  }
+  cv.addEventListener('pointerup', release);
+  cv.addEventListener('pointercancel', release);
 
   /* ================= 렌더 ================= */
   function resize() {
@@ -946,14 +1071,9 @@ img{display:block;max-width:100%}
     const dt = Math.min(50, now - (last || now));
     last = now;
     const p = S.p;
-    if (p.moving) {
-      p.t += dt / STEP_MS;
-      if (p.t >= 1) { p.t = 1; p.moving = false; arrived(); }
-    }
-    const k = p.moving ? p.t : 1;
-    const ppx = (p.fx + (p.x - p.fx) * k) * T;
-    const ppy = (p.fy + (p.y - p.fy) * k) * T;
-    if (!p.moving) { p.fx = p.x; p.fy = p.y; }
+    update(dt);
+    const ppx = p.px - 8;
+    const ppy = p.py - 12;
 
     const tx = Math.max(0, Math.min(MW * T - VW, ppx + 8 - VW / 2));
     const ty = Math.max(0, Math.min(MH * T - VH, ppy + 8 - VH * 0.44));
@@ -996,8 +1116,7 @@ img{display:block;max-width:100%}
     } });
     actors.sort((a, b) => a.y - b.y).forEach((a) => a.draw());
 
-    const [fdx, fdy] = DIRS[p.dir];
-    aBtn.classList.toggle('is-ready', S.mode === 'play' && !p.moving && !!thingAt(p.x + fdx, p.y + fdy));
+    aBtn.classList.toggle('is-ready', S.mode === 'play' && !!nearbyThing());
     requestAnimationFrame(frame);
   }
 
@@ -1012,7 +1131,7 @@ img{display:block;max-width:100%}
     S.mode = 'play';
     await say('나', ['(일요일 오후, 버스에서 내렸다.)', '(요즘 왠지 지치고 마음이 무거웠는데…)', '(어디선가 따뜻한 노랫소리가 들려온다.)']);
     await say('QUEST', ['노랫소리가 들리는 ‘의정부비전교회’를 찾아가 보자!\n★ 별 조각 3개도 숨어 있대요.']);
-    await say('TIP', ['아래 패드로 움직이거나, 가고 싶은 곳을 톡 눌러 보세요.\n누군가를 만나면 A 버튼으로 말을 걸 수 있어요.']);
+    await say('TIP', ['화면을 누른 채 끌면 조이스틱이 나타나요.\n가고 싶은 곳을 톡 눌러도 되고, 누군가를 만나면 A 버튼으로 말을 걸어 보세요.']);
   }
   function showEnding(cleared) {
     S.mode = 'ending';
@@ -1028,7 +1147,8 @@ img{display:block;max-width:100%}
   }
   function enterChurch() {
     S.mode = 'ending';
-    S.held = null;
+    endJoy();
+    keys.clear();
     fade.classList.add('is-on');
     setTimeout(() => { showEnding(true); fade.classList.remove('is-on'); }, 1700);
   }
@@ -1037,8 +1157,9 @@ img{display:block;max-width:100%}
   document.getElementById('titleSkip').addEventListener('click', (e) => { e.stopPropagation(); bgm.play(); showEnding(false); });
   document.getElementById('skipBtn').addEventListener('click', () => showEnding(false));
   document.getElementById('replay').addEventListener('click', () => {
-    Object.assign(S.p, { x: 17, y: 27, fx: 17, fy: 27, dir: 'up', moving: false });
-    S.path = []; S.after = null; S.target = null; S.held = null;
+    placeAt(17, 27);
+    S.p.dir = 'up';
+    clearPath();
     ending.hidden = true;
     game.hidden = false;
     document.body.classList.add('lock');
