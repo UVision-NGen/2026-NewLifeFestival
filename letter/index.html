@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>당신에게 온 편지 · 2026 새생명축제</title>
+<meta name="description" content="수고하고 무거운 짐 진 당신에게 보내는 초대의 편지. 2026년 10월 25일 주일 오후 1시 50분, 의정부비전교회.">
+<meta name="theme-color" content="#F7F2E8">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="의정부비전교회 청년부">
+<meta property="og:title" content="당신에게 한 통의 편지가 도착했어요 — 2026 새생명축제">
+<meta property="og:description" content="이번 주말엔 모든 짐을 잠시 문밖에 두고, 편히 기대어 쉬어가세요. 10월 25일(주일) 오후 1시 50분 · 의정부비전교회">
+<meta property="og:image" content="https://uvision-ngen.github.io/2026-NewLifeFestival/letter/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://uvision-ngen.github.io/2026-NewLifeFestival/letter/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✉️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Nanum+Pen+Script&display=swap">
+<style>
+:root{
+  --paper:#FAF6EE; --paper2:#F3ECDF; --ink:#2E2A25; --ink2:#575047; --sub:#998F82;
+  --rose:#A9524B; --rose2:#C77E74; --kraft:#E3CFAE; --kraft2:#D6BE97; --kraft3:#CBB089; --line:#E3D9C8;
+  --serif:'Nanum Myeongjo', 'MaruBuri', serif; --hand:'Nanum Pen Script', cursive;
+  --noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .25 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:#ECE4D6 var(--noise);color:var(--ink);font-family:var(--serif);font-size:15.5px;line-height:2;word-break:keep-all;-webkit-font-smoothing:antialiased}
+body.is-sealed{overflow:hidden}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.page{position:relative;max-width:480px;margin:0 auto;background:var(--paper) var(--noise);min-height:100vh;box-shadow:0 0 70px rgba(70,55,35,.10);overflow:hidden}
+.hand{font-family:var(--hand);font-weight:400}
+
+/* ---------- 봉투 인트로 ---------- */
+.intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--paper) var(--noise);transition:opacity .9s var(--ease),visibility .9s}
+.intro.is-gone{opacity:0;visibility:hidden}
+.intro-inner{display:flex;flex-direction:column;align-items:center;gap:26px;padding:24px}
+.intro-to{font-family:var(--hand);font-size:30px;line-height:1.3;color:var(--ink2);text-align:center}
+.intro-hint{font-size:13px;color:var(--sub);letter-spacing:.06em;animation:blink 2.4s ease-in-out infinite}
+@keyframes blink{50%{opacity:.35}}
+.envelope{position:relative;width:min(80vw,330px);aspect-ratio:3/2;perspective:1000px;filter:drop-shadow(0 18px 24px rgba(80,60,30,.18))}
+.env-back{position:absolute;inset:0;border-radius:6px;background:var(--kraft3)}
+.env-letter{position:absolute;left:5%;right:5%;top:5%;height:88%;z-index:1;padding:18px 20px;border-radius:3px;background:var(--paper) var(--noise);box-shadow:0 1px 3px rgba(0,0,0,.08);transition:transform 1s var(--ease) .55s}
+.env-letter p{font-family:var(--hand);font-size:22px;line-height:1.4;color:var(--ink2)}
+.env-letter span{display:block;height:1px;margin-top:14px;background:var(--line)}
+.env-pocket{position:absolute;inset:0;z-index:2;width:100%;height:100%}
+.env-flap{position:absolute;left:0;top:0;z-index:3;width:100%;height:62%;transform-origin:50% 0;transition:transform .7s var(--ease),z-index 0s .35s}
+.env-flap svg{width:100%;height:100%;display:block}
+.seal{position:absolute;left:50%;top:62%;z-index:4;width:68px;height:68px;margin:-34px 0 0 -34px;border-radius:47% 53% 50% 50%/52% 46% 54% 48%;background:radial-gradient(circle at 38% 32%,#c4665d,#9b3f39 55%,#7e2f2a);box-shadow:0 3px 8px rgba(80,20,15,.35),inset 0 -3px 6px rgba(0,0,0,.25),inset 0 3px 6px rgba(255,255,255,.18);display:grid;place-items:center;transition:transform .35s var(--ease),opacity .35s;animation:pulse 2.4s ease-in-out infinite}
+.seal::before{content:"";position:absolute;inset:9px;border-radius:50%;border:1.5px solid rgba(255,220,210,.35)}
+.seal svg{width:26px;height:26px;color:rgba(255,232,224,.85)}
+@keyframes pulse{50%{transform:scale(1.06)}}
+.envelope.is-open .seal{transform:scale(.4);opacity:0;animation:none}
+.envelope.is-open .env-flap{transform:rotateX(180deg);z-index:0}
+.envelope.is-open .env-letter{transform:translateY(-58%)}
+
+/* ---------- 본문 ---------- */
+.verse-sec{min-height:92vh;min-height:92svh;display:flex;flex-direction:column;justify-content:center;padding:80px 32px 60px}
+.kicker{font-size:12.5px;letter-spacing:.18em;color:var(--sub)}
+.typed{margin-top:28px;min-height:7.2em;font-weight:700;font-size:25px;line-height:1.75;letter-spacing:-.01em;white-space:pre-line}
+.caret{display:inline-block;width:2px;height:1.05em;margin-left:3px;background:var(--rose);vertical-align:-.15em;animation:caret 1s steps(1) infinite}
+@keyframes caret{50%{opacity:0}}
+.verse-ref{margin-top:18px;font-size:14px;color:var(--sub);opacity:0;transform:translateY(8px);transition:.8s var(--ease)}
+.verse-ref.is-on{opacity:1;transform:none}
+.verse-ref::before{content:"— ";color:var(--rose2)}
+
+.paper{position:relative;margin:0 20px;padding:44px 26px 40px;background:#FFFDF8 var(--noise);border-radius:4px;box-shadow:0 1px 2px rgba(70,55,35,.08),0 12px 30px rgba(70,55,35,.08)}
+.paper::before{content:"";position:absolute;top:-10px;left:50%;width:90px;height:24px;margin-left:-45px;background:rgba(214,190,151,.55);transform:rotate(-3deg)}
+.to{font-size:30px;line-height:1.2;color:var(--ink2)}
+.paper p + p{margin-top:24px}
+.paper .body{color:#3b362f;line-height:2.1}
+.from{margin-top:36px!important;text-align:right;font-size:28px;line-height:1.2;color:var(--ink2)}
+.sign-line{display:block;width:150px;margin:2px 0 0 auto}
+.sign-line path{stroke-dasharray:220;stroke-dashoffset:220;transition:stroke-dashoffset 1.6s var(--ease) .3s}
+.is-in .sign-line path,.sign-line.is-in path{stroke-dashoffset:0}
+
+.ps{margin:56px 28px 0}
+.ps-head{font-size:30px;line-height:1.2;color:var(--rose)}
+.ps-list{margin-top:14px;list-style:none;border-top:1px solid var(--line)}
+.ps-list li{display:flex;gap:16px;padding:14px 2px;border-bottom:1px solid var(--line)}
+.ps-list b{flex:none;width:36px;font-size:13px;color:var(--sub);font-weight:400;padding-top:2px}
+.ps-list span{font-weight:700}
+.ps-list small{display:block;font-size:13.5px;font-weight:400;color:var(--ink2)}
+.ps-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.btn{display:flex;align-items:center;justify-content:center;min-height:48px;padding:0 16px;border-radius:2px;font-size:14px;letter-spacing:.02em;background:var(--ink);color:var(--paper);transition:transform .2s}
+.btn:active{transform:scale(.97)}
+.btn.line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+
+.snapshot{margin:64px auto 0;width:78%;padding:12px 12px 14px;background:#fff;box-shadow:0 10px 26px rgba(60,45,25,.16);transform:rotate(-2.2deg);position:relative}
+.snapshot::before,.snapshot::after{content:"";position:absolute;width:70px;height:22px;background:rgba(201,174,132,.55)}
+.snapshot::before{top:-9px;left:-16px;transform:rotate(-32deg)}
+.snapshot::after{top:-9px;right:-16px;transform:rotate(32deg)}
+.snapshot img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:sepia(.18) saturate(.92) contrast(.98)}
+.snapshot figcaption{margin-top:8px;text-align:center;font-family:var(--hand);font-size:24px;line-height:1.2;color:var(--ink2)}
+
+.sec{margin:72px 24px 0}
+.sec-title{font-size:20px;font-weight:800;letter-spacing:-.01em}
+.sec-title small{display:block;margin-bottom:2px;font-family:var(--hand);font-weight:400;font-size:24px;color:var(--rose)}
+.sec-desc{margin-top:6px;font-size:14px;color:var(--ink2)}
+.map-wrap{margin-top:18px;padding:8px;background:#fffdf8;box-shadow:0 1px 2px rgba(70,55,35,.08),0 10px 24px rgba(70,55,35,.08);border-radius:3px}
+.map-wrap [data-nlf-map]{--m-bg:#F7F1E6;--m-block:#EFE5D3;--m-park:#E2E6D0;--m-public:#ECE5D9;--m-road:#FFFDF7;--m-road-edge:#6E655A;--m-text:#2E2A25;--m-text-sub:#6E655A;--m-park-text:#6B7A55;--m-accent:#A9524B;--m-target:rgba(169,82,75,.16);--m-bus:#6E655A}
+.map-wrap .nlf-map use,.map-wrap .nlf-map .m-park,.map-wrap .nlf-map .m-apt,.map-wrap .nlf-map .m-public,.map-wrap .nlf-map .m-route{filter:url(#rough)}
+.map-links{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.map-links .btn{min-height:44px;font-size:13px;padding:0 8px}
+
+.reply-btns{display:grid;gap:12px;margin-top:22px}
+.reply-btn{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;min-height:60px;font-size:16px;font-weight:700;border-radius:2px;transition:transform .2s}
+.reply-btn:active{transform:scale(.98)}
+.reply-btn.primary{background:var(--ink);color:var(--paper)}
+.reply-btn.comma{background:#fffdf8;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.reply-btn .mark{font-family:var(--hand);font-size:34px;line-height:0;color:var(--rose2);transform:translateY(-3px)}
+.reply-btn.primary .mark{color:#e8b3aa}
+.reply-done{margin-top:16px;padding:16px;background:#fffdf8;text-align:center;font-size:14px;color:var(--ink2);box-shadow:inset 0 0 0 1px var(--line)}
+
+.contacts{margin-top:16px;list-style:none;border-top:1px solid var(--line)}
+.contacts li{display:flex;align-items:center;justify-content:space-between;padding:14px 2px;border-bottom:1px solid var(--line)}
+.contacts b{font-size:16px;margin-right:6px}
+.contacts .role{font-size:13px;color:var(--sub)}
+.c-actions{display:flex;gap:6px}
+.c-actions a{padding:6px 12px;font-size:13px;box-shadow:inset 0 0 0 1px var(--line);border-radius:2px;background:#fffdf8}
+
+.foot{margin-top:84px;padding:0 28px 70px;text-align:center}
+.foot .hand{font-size:32px;line-height:1.3;color:var(--ink2)}
+.foot .btn{margin:22px auto 0;width:230px}
+.foot small{display:block;margin-top:34px;font-size:12px;color:var(--sub)}
+
+[data-reveal]{opacity:0;transform:translateY(18px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+[data-reveal].is-in{opacity:1;transform:none}
+.snapshot[data-reveal]{transform:rotate(-2.2deg) translateY(18px)}
+.snapshot[data-reveal].is-in{transform:rotate(-2.2deg)}
+
+/* ---------- 축복 팝업 ---------- */
+.modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:20px;background:rgba(46,42,37,.42);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);animation:fade .35s ease}
+.modal[hidden]{display:none}
+@keyframes fade{from{opacity:0}}
+.modal-card{position:relative;width:min(100%,380px);max-height:calc(100vh - 40px);overflow:auto;padding:34px 24px 24px;background:var(--paper) var(--noise);border-radius:4px;box-shadow:0 20px 50px rgba(30,20,10,.3);text-align:center;animation:pop .5s var(--ease)}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.97)}}
+.bless-mark{font-family:var(--hand);font-size:84px;line-height:.6;height:44px;color:var(--rose2)}
+.bless-text{margin-top:14px;font-size:18px;font-weight:700;line-height:1.8;min-height:3.6em}
+.bless-sub{margin-top:6px;font-size:13.5px;color:var(--ink2)}
+.reply-form{margin-top:22px;text-align:left;border-top:1px dashed var(--line);padding-top:18px}
+.reply-form label{display:block;margin-bottom:14px;font-size:13.5px;color:var(--ink2)}
+.reply-form input,.reply-form select{display:block;width:100%;height:46px;margin-top:6px;padding:0 12px;border:1px solid var(--line);border-radius:2px;background:#fffdf8;font-size:15px;outline:none}
+.reply-form input:focus,.reply-form select:focus{border-color:var(--ink2)}
+.reply-form .btn{width:100%;margin-top:6px}
+.reply-form .note{margin-top:10px;font-size:12px;color:var(--sub);text-align:center;line-height:1.6}
+.modal-x{position:absolute;top:8px;right:8px;width:40px;height:40px;font-size:22px;color:var(--sub)}
+
+.bgm{position:fixed;right:max(16px,calc(50vw - 240px + 16px));bottom:calc(18px + env(safe-area-inset-bottom));z-index:60;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:#fffdf8;color:var(--ink);box-shadow:0 4px 14px rgba(60,45,25,.18)}
+.bgm svg{width:20px;height:20px}
+.bgm.is-playing svg{animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.bgm::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:1px solid var(--rose2);opacity:0}
+.bgm.is-playing::after{animation:ring 2.2s ease-out infinite}
+@keyframes ring{from{opacity:.7;transform:scale(.9)}to{opacity:0;transform:scale(1.35)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}[data-reveal]{opacity:1;transform:none}}
+</style>
+</head>
+<body class="is-sealed">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="5"/></filter>
+</svg>
+
+<div class="intro" id="intro">
+  <div class="intro-inner">
+    <p class="intro-to">To. <span class="to-name">지친 하루를 보낸 당신</span>에게</p>
+    <div class="envelope" id="envelope">
+      <div class="env-back"></div>
+      <div class="env-letter" aria-hidden="true"><p>당신에게 쉼을 보내요</p><span></span><span></span><span></span></div>
+      <svg class="env-pocket" viewBox="0 0 300 200" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0 L150 112 L0 200 Z" fill="#DCC6A2"/>
+        <path d="M300 0 L150 112 L300 200 Z" fill="#DCC6A2"/>
+        <path d="M0 200 L150 96 L300 200 Z" fill="#E6D3B3"/>
+        <path d="M0 200 L150 96 L300 200" fill="none" stroke="rgba(120,90,50,.18)" stroke-width="1"/>
+      </svg>
+      <div class="env-flap" aria-hidden="true">
+        <svg viewBox="0 0 300 124" preserveAspectRatio="none"><path d="M0 0 H300 L156 120 Q150 125 144 120 Z" fill="#E9D8BA"/><path d="M0 0 L144 120 Q150 125 156 120 L300 0" fill="none" stroke="rgba(120,90,50,.22)" stroke-width="1"/></svg>
+      </div>
+      <button class="seal" id="seal" type="button" aria-label="봉인을 뜯고 편지 열기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3v18M6 9h12"/></svg>
+      </button>
+    </div>
+    <p class="intro-hint">봉인을 눌러 편지를 열어보세요</p>
+  </div>
+</div>
+
+<div class="page">
+  <section class="verse-sec">
+    <p class="kicker">2026 새생명축제 · 초대의 편지</p>
+    <h1 class="typed" id="typed" aria-label="수고하고 무거운 짐 진 자들아 다 내게로 오라 내가 너희를 쉬게 하리라"><span class="typed-text" aria-hidden="true"></span><span class="caret" aria-hidden="true"></span></h1>
+    <p class="verse-ref" id="verseRef">마태복음 11:28</p>
+  </section>
+
+  <article class="paper" data-reveal>
+    <p class="to hand">To. <span class="to-name">지친 하루를 보낸 당신</span>에게</p>
+    <p class="body">잘 지내고 있나요?<br>요즘 어떤 하루를 보내고 있는지<br>문득 궁금했어요.</p>
+    <p class="body">해야 할 일은 늘 많고,<br>마음은 자꾸만 바빠지고,<br>괜찮은 척하느라 조금 지쳐 있지는 않은지.</p>
+    <p class="body">이번 주말엔 모든 짐을 잠시 문밖에 두고,<br>그저 편히 기대어 쉬어가세요.</p>
+    <p class="body">거창한 무언가를 준비하지 않아도 괜찮아요.<br>잘 몰라도, 처음이어도 괜찮아요.<br>당신이 와 주는 것만으로 충분하니까요.</p>
+    <p class="body">따뜻한 자리를 마련해 두고<br>당신을 기다리고 있을게요.</p>
+    <p class="from hand">From. 의정부비전교회 청년부</p>
+    <svg class="sign-line" viewBox="0 0 150 20" aria-hidden="true" data-reveal><path d="M4 12 C30 4 50 18 76 10 S120 6 146 12" fill="none" stroke="#A9524B" stroke-width="1.6" stroke-linecap="round"/></svg>
+  </article>
+
+  <section class="ps" data-reveal>
+    <p class="ps-head hand">P.S. 언제, 어디서 만날까요?</p>
+    <ul class="ps-list">
+      <li><b>언제</b><span>2026년 10월 25일 주일<small>오후 1시 50분 · <span data-nlf-dday></span></small></span></li>
+      <li><b>어디서</b><span>의정부비전교회<small>의정부시 용민로122번길 50</small></span></li>
+    </ul>
+    <div class="ps-actions">
+      <button class="btn" type="button" data-nlf="calendar">달력에 적어두기</button>
+      <button class="btn line" type="button" data-nlf="copy-address">주소 복사</button>
+    </div>
+  </section>
+
+  <figure class="snapshot" data-reveal>
+    <img src="photo5.jpg" alt="무대 앞에 모여 손가락 브이를 한 청년부 사진" loading="lazy">
+    <figcaption>우리, 이렇게 모여요</figcaption>
+  </figure>
+
+  <section class="sec" data-reveal>
+    <h2 class="sec-title"><small>찾아오는 길</small>시온성교회와 승지문화공원 사이</h2>
+    <div class="map-wrap"><div data-nlf-map></div></div>
+    <div class="map-links">
+      <a class="btn line" data-nlf-link="naver">네이버 지도</a>
+      <a class="btn line" data-nlf-link="kakao">카카오맵</a>
+      <button class="btn line" type="button" data-nlf="copy-address">주소 복사</button>
+    </div>
+  </section>
+
+  <section class="sec" id="reply" data-reveal>
+    <h2 class="sec-title"><small>답장</small>이 초대에 답해 주실래요?</h2>
+    <p class="sec-desc">어떤 버튼을 눌러도 좋아요. 작은 선물 같은 한 줄을 보내 드릴게요.</p>
+    <div class="reply-btns">
+      <button class="reply-btn primary" type="button" data-bless="accept">초대에 응하기</button>
+      <button class="reply-btn comma" type="button" data-bless="rest">쉼표 찍으러 가기</button>
+    </div>
+    <p class="reply-done" hidden></p>
+  </section>
+
+  <section class="sec" data-reveal>
+    <h2 class="sec-title"><small>문의</small>궁금한 것이 있다면 언제든</h2>
+    <ul class="contacts">
+      <li><div><b>박성진</b><span class="role">강도사</span></div><div class="c-actions"><a href="tel:010-5501-4328">전화</a><a href="sms:010-5501-4328">문자</a></div></li>
+      <li><div><b>이일규</b><span class="role">장로</span></div><div class="c-actions"><a href="tel:010-5746-1735">전화</a><a href="sms:010-5746-1735">문자</a></div></li>
+    </ul>
+  </section>
+
+  <footer class="foot" data-reveal>
+    <p class="hand">이 편지가 당신에게<br>작은 쉼표가 되었길.</p>
+    <button class="btn" type="button" data-nlf="share">이 편지를 친구에게 전하기</button>
+    <small>의정부비전교회 청년부 · 2026 새생명축제</small>
+  </footer>
+</div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="blessText" hidden>
+  <div class="modal-card">
+    <button class="modal-x" type="button" data-close aria-label="닫기">×</button>
+    <p class="bless-mark hand" aria-hidden="true">,</p>
+    <p class="bless-text" id="blessText"></p>
+    <p class="bless-sub">당신을 위한 자리를 기쁘게 준비할게요.</p>
+    <form class="reply-form">
+      <label>이름<input name="name" required maxlength="20" autocomplete="name" placeholder="성함을 적어 주세요"></label>
+      <label>함께 오는 인원 (본인 포함)
+        <select name="count"><option>1명</option><option>2명</option><option>3명</option><option>4명</option><option>5명 이상</option></select>
+      </label>
+      <label>남기고 싶은 한마디 (선택)<input name="memo" maxlength="60" placeholder="예) 친구랑 같이 갈게요"></label>
+      <button class="btn" type="submit">문자로 답장 보내기</button>
+      <p class="note">버튼을 누르면 박성진 강도사님께 보낼 문자가 준비돼요.</p>
+    </form>
+  </div>
+</div>
+
+<button class="bgm" type="button" data-nlf="bgm" aria-pressed="false" aria-label="배경음악 켜기">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.2" fill="currentColor"/><path d="M12 5.5a6.5 6.5 0 0 1 6.5 6.5" stroke-linecap="round"/></svg>
+</button>
+
+<script src="invite.js"></script>
+<script>
+(() => {
+  const bgm = NLF.music('bgm.mp3', { auto: false });
+  if (NLF.guest) document.querySelectorAll('.to-name').forEach((el) => { el.textContent = NLF.guest; });
+
+  /* 타자기처럼 말씀 쓰기 */
+  const VERSE = '수고하고 무거운 짐 진 자들아\n다 내게로 오라\n내가 너희를 쉬게 하리라';
+  const out = document.querySelector('.typed-text');
+  let typing = false;
+  function typeVerse() {
+    if (typing) return;
+    typing = true;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      out.textContent = VERSE;
+      document.getElementById('verseRef').classList.add('is-on');
+      return;
+    }
+    let i = 0;
+    (function step() {
+      out.textContent = VERSE.slice(0, i);
+      if (i >= VERSE.length) {
+        setTimeout(() => document.getElementById('verseRef').classList.add('is-on'), 300);
+        return;
+      }
+      const ch = VERSE[i];
+      i += 1;
+      setTimeout(step, ch === '\n' ? 520 : ch === ' ' ? 110 : 85 + Math.random() * 70);
+    })();
+  }
+
+  /* 봉투 열기 */
+  const intro = document.getElementById('intro');
+  const envelope = document.getElementById('envelope');
+  function openLetter() {
+    if (envelope.classList.contains('is-open')) return;
+    bgm.play();
+    envelope.classList.add('is-open');
+    setTimeout(() => {
+      intro.classList.add('is-gone');
+      document.body.classList.remove('is-sealed');
+      setTimeout(typeVerse, 500);
+    }, 1900);
+  }
+  document.getElementById('seal').addEventListener('click', openLetter);
+  envelope.addEventListener('click', openLetter);
+
+  /* 답장(축복 팝업) */
+  const BLESS = {
+    accept: ['당신의 걸음마다\n평안이 함께하길.', '와 주겠다는 그 마음이\n벌써 큰 선물이에요.', '무거운 짐은 내려놓고\n가벼운 마음으로 만나요.'],
+    rest: ['오늘 하루도 충분히 잘 해냈어요.\n이제 쉬어도 괜찮아요.', '바쁜 문장 사이에\n작은 쉼표 하나 찍어 둘게요.', '쉬어 가는 것도\n앞으로 가는 거예요.'],
+  };
+  const modal = document.getElementById('modal');
+  const form = modal.querySelector('form');
+  const blessText = document.getElementById('blessText');
+  let lastKind = 'accept';
+  let opener = null;
+  function openModal(kind, btn) {
+    lastKind = kind;
+    opener = btn;
+    const list = BLESS[kind];
+    blessText.textContent = list[Math.floor(Math.random() * list.length)];
+    blessText.style.whiteSpace = 'pre-line';
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => form.elements.name.focus({ preventScroll: true }), 400);
+  }
+  function closeModal() {
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    if (opener) opener.focus({ preventScroll: true });
+  }
+  document.querySelectorAll('[data-bless]').forEach((b) => b.addEventListener('click', () => openModal(b.dataset.bless, b)));
+  modal.addEventListener('click', (e) => { if (e.target === modal || e.target.closest('[data-close]')) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = form.elements.name.value.trim();
+    if (!name) return;
+    await NLF.rsvp('참석 답장', [
+      ['이름', name],
+      ['인원', form.elements.count.value],
+      ['선택', lastKind === 'accept' ? '초대에 응하기' : '쉼표 찍으러 가기'],
+      ['한마디', form.elements.memo.value.trim()],
+    ]);
+    closeModal();
+    const done = document.querySelector('.reply-done');
+    done.textContent = `${name}님의 답장을 기쁘게 받았어요. 10월 25일에 만나요.`;
+    done.hidden = false;
+  });
+})();
+</script>
+</body>
+</html>

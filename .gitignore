@@ -1,0 +1,6 @@
+# 원본 에셋(각 초대장 폴더에 최적화된 사본이 들어 있음)
+images/
+music/
+
+Thumbs.db
+.DS_Store

@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>요즘 나에게 필요한 휴식 테스트 · 2026 새생명축제</title>
+<meta name="description" content="4개의 질문으로 알아보는 나의 휴식 유형. 결과에 맞는 주말 처방전도 함께 드려요.">
+<meta name="theme-color" content="#EFEAFF">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="의정부비전교회 청년부">
+<meta property="og:title" content="요즘 당신에게 가장 필요한 휴식은? — 휴식 유형 테스트">
+<meta property="og:description" content="4개의 질문으로 알아보는 나의 쉼 유형. 결과에 맞는 주말 처방전까지!">
+<meta property="og:image" content="https://uvision-ngen.github.io/2026-NewLifeFestival/test/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://uvision-ngen.github.io/2026-NewLifeFestival/test/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔮</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  --bg:#EFEAFF; --card:#FFFFFF; --ink:#2B2440; --sub:#6F6890; --line:#E6E0F7;
+  --violet:#6E56CF; --violet2:#8B76E6; --soft:#F6F3FF;
+  --c:#6E56CF; --cbg:#F6F3FF;
+  --display:'Jua', 'Pretendard Variable', sans-serif; --sans:'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1); --bounce:cubic-bezier(.34,1.56,.64,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;word-break:keep-all;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.app{position:relative;max-width:480px;margin:0 auto;min-height:100vh;min-height:100svh;overflow:hidden;background:var(--bg)}
+.blobs{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.blobs i{position:absolute;border-radius:50%;filter:blur(40px);opacity:.75;animation:float 14s ease-in-out infinite alternate}
+.blobs i:nth-child(1){width:260px;height:260px;left:-80px;top:-60px;background:#D9CCFF}
+.blobs i:nth-child(2){width:220px;height:220px;right:-70px;top:180px;background:#FFD6E5;animation-duration:17s}
+.blobs i:nth-child(3){width:240px;height:240px;left:-40px;top:560px;background:#CDEFFF;animation-duration:19s}
+@keyframes float{to{transform:translate(30px,40px) scale(1.1)}}
+
+.screen{position:relative;display:none;min-height:100vh;min-height:100svh;padding:28px 22px 40px}
+.screen.is-active{display:flex;flex-direction:column;animation:enter .55s var(--ease)}
+@keyframes enter{from{opacity:0;transform:translateY(16px)}}
+.bgm{position:absolute;top:calc(14px + env(safe-area-inset-top));right:14px;z-index:30;display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.7);box-shadow:0 4px 14px rgba(110,86,207,.15);color:var(--violet)}
+.bgm svg{width:20px;height:20px}
+.bgm.is-playing svg{animation:bob 1.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-3px) rotate(-8deg)}}
+
+/* intro */
+.intro{justify-content:center;text-align:center}
+.badge{align-self:center;padding:7px 14px;border-radius:999px;background:var(--card);color:var(--violet);font-weight:700;font-size:13px;box-shadow:0 4px 14px rgba(110,86,207,.12)}
+.orbit{position:relative;width:230px;height:200px;margin:26px auto 6px}
+.orbit span{position:absolute;display:grid;place-items:center;width:78px;height:78px;border-radius:26px;background:var(--card);font-size:38px;box-shadow:0 10px 24px rgba(80,60,160,.14);animation:hover 3.2s ease-in-out infinite}
+.orbit span:nth-child(1){left:6px;top:14px;transform:rotate(-8deg)}
+.orbit span:nth-child(2){right:4px;top:0;animation-delay:-.8s;transform:rotate(7deg)}
+.orbit span:nth-child(3){left:28px;bottom:0;animation-delay:-1.6s;transform:rotate(6deg)}
+.orbit span:nth-child(4){right:26px;bottom:10px;animation-delay:-2.4s;transform:rotate(-6deg)}
+@keyframes hover{50%{translate:0 -8px}}
+.intro h1{margin-top:18px;font-family:var(--display);font-weight:400;font-size:33px;line-height:1.3;letter-spacing:-.01em}
+.intro h1 em{font-style:normal;color:var(--violet)}
+.intro .lede{margin-top:10px;color:var(--sub)}
+.big-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:60px;margin-top:30px;border-radius:20px;background:var(--violet);color:#fff;font-family:var(--display);font-size:20px;box-shadow:0 12px 26px rgba(110,86,207,.32);transition:transform .15s}
+.big-btn:active{transform:scale(.97)}
+.meta{margin-top:12px;font-size:12.5px;color:var(--sub)}
+.skip{margin-top:18px;align-self:center;font-size:13.5px;color:var(--sub);text-decoration:underline;text-underline-offset:3px}
+
+/* quiz */
+.quiz-top{display:flex;align-items:center;gap:12px;margin-top:34px}
+.back{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.7);color:var(--sub)}
+.back svg{width:18px;height:18px}
+.bar{flex:1;height:10px;border-radius:5px;background:rgba(255,255,255,.75);overflow:hidden}
+.bar i{display:block;height:100%;width:25%;border-radius:5px;background:linear-gradient(90deg,var(--violet2),var(--violet));transition:width .5s var(--ease)}
+.qno{font-family:var(--display);font-size:15px;color:var(--violet);min-width:44px;text-align:right}
+.q-card{margin-top:26px}
+.q-card.is-swap{animation:swap .45s var(--ease)}
+@keyframes swap{from{opacity:0;transform:translateX(24px)}}
+.q-emoji{font-size:44px;line-height:1}
+.question{margin-top:12px;font-family:var(--display);font-weight:400;font-size:26px;line-height:1.38}
+.answers{display:grid;gap:10px;margin-top:24px}
+.answer{display:flex;align-items:center;gap:12px;width:100%;min-height:64px;padding:12px 16px;border-radius:18px;background:var(--card);text-align:left;font-size:15.5px;font-weight:600;box-shadow:0 4px 12px rgba(80,60,160,.07);border:2px solid transparent;transition:transform .15s,border-color .2s,background .2s}
+.answer:active{transform:scale(.98)}
+.answer.is-picked{border-color:var(--violet);background:var(--soft)}
+.answer .em{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--soft);font-size:21px}
+
+/* loading */
+.loading{justify-content:center;align-items:center;text-align:center}
+.spinner{width:84px;height:84px;border-radius:50%;background:conic-gradient(var(--violet) 0 25%,#FF7A9A 0 50%,#2EC4A6 0 75%,#FFB547 0);-webkit-mask:radial-gradient(circle,transparent 26px,#000 27px);mask:radial-gradient(circle,transparent 26px,#000 27px);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading p{margin-top:24px;font-family:var(--display);font-size:20px}
+.loading small{margin-top:6px;color:var(--sub)}
+
+/* result */
+.result{padding-top:60px}
+.r-eyebrow{text-align:center;font-family:var(--display);font-size:17px;color:var(--sub)}
+.r-card{position:relative;margin-top:14px;padding:30px 22px 26px;border-radius:30px;background:var(--cbg);text-align:center;box-shadow:0 14px 34px rgba(80,60,160,.12);animation:pop .7s var(--bounce)}
+@keyframes pop{from{transform:scale(.85);opacity:0}}
+.r-emoji{display:grid;place-items:center;width:110px;height:110px;margin:0 auto;border-radius:36px;background:#fff;font-size:58px;box-shadow:0 10px 24px rgba(0,0,0,.08)}
+.r-name{margin-top:18px;font-family:var(--display);font-weight:400;font-size:28px;line-height:1.3;color:var(--c)}
+.r-summary{margin-top:6px;font-weight:700}
+.r-desc{margin-top:22px;padding:20px;border-radius:22px;background:var(--card);color:#4A4363}
+.r-block{margin-top:12px;padding:20px;border-radius:22px;background:var(--card)}
+.r-block h3{font-family:var(--display);font-weight:400;font-size:18px}
+.r-needs{margin-top:10px;list-style:none;display:grid;gap:8px}
+.r-needs li{display:flex;align-items:center;gap:10px;font-weight:600}
+.r-needs li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--c)}
+.r-match{display:flex;align-items:center;gap:12px;margin-top:10px}
+.r-match span{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:var(--soft);font-size:24px}
+.r-match b{display:block;font-size:15px}
+.r-match small{color:var(--sub);font-size:13px}
+.row-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.btn{display:flex;align-items:center;justify-content:center;gap:6px;min-height:52px;padding:0 14px;border-radius:16px;background:var(--card);font-weight:700;font-size:14.5px;box-shadow:0 4px 12px rgba(80,60,160,.08);transition:transform .15s}
+.btn:active{transform:scale(.97)}
+.btn.solid{background:var(--c);color:#fff;box-shadow:0 10px 22px rgba(80,60,160,.18)}
+.btn.violet{background:var(--violet);color:#fff}
+
+/* prescription */
+.rx{position:relative;margin-top:40px;padding:26px 22px 24px;border-radius:8px;background:#FFFEFA;box-shadow:0 14px 34px rgba(80,60,160,.12);background-image:repeating-linear-gradient(transparent 0 31px,#F1ECFA 31px 32px)}
+.rx::before{content:"";position:absolute;left:0;right:0;top:-8px;height:16px;background:radial-gradient(circle at 8px 0,transparent 7px,#FFFEFA 7.5px) -8px 8px/16px 16px repeat-x}
+.rx-head{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:12px;border-bottom:2px solid var(--ink)}
+.rx-head b{font-family:var(--display);font-weight:400;font-size:22px}
+.rx-head span{font-family:Georgia,serif;font-style:italic;font-size:28px;color:var(--c)}
+.rx dl{margin-top:8px}
+.rx dl div{display:grid;grid-template-columns:52px 1fr;gap:10px;padding:8px 0;border-bottom:1px dashed #DDD5F2}
+.rx dt{font-size:13px;color:var(--sub);padding-top:1px}
+.rx dd{font-weight:700;font-size:15px;line-height:1.55}
+.rx-sign{margin-top:14px;text-align:right;font-size:13px;color:var(--sub)}
+.stamp{position:absolute;right:18px;bottom:44px;display:grid;place-items:center;width:84px;height:84px;border-radius:50%;border:3px double #E2576B;color:#E2576B;font-family:var(--display);font-size:16px;line-height:1.1;text-align:center;transform:rotate(-14deg);opacity:.85}
+.verse{margin-top:30px;text-align:center}
+.verse p{font-size:13.5px;color:var(--sub)}
+.verse blockquote{margin-top:8px;font-family:var(--display);font-size:20px;line-height:1.5}
+.verse cite{display:block;margin-top:6px;font-style:normal;font-size:12.5px;color:var(--sub)}
+
+/* invite */
+.invite{padding:20px 22px 60px}
+.invite[hidden]{display:none}
+.sec-title{margin-top:44px;font-family:var(--display);font-weight:400;font-size:24px;line-height:1.35}
+.sec-title small{display:block;font-family:var(--sans);font-size:13px;font-weight:700;color:var(--violet);letter-spacing:.04em}
+.photo{margin-top:16px;border-radius:24px;overflow:hidden;box-shadow:0 12px 28px rgba(80,60,160,.15)}
+.photo img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.info{margin-top:16px;padding:6px 18px;border-radius:22px;background:var(--card)}
+.info div{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.info div:last-child{border-bottom:0}
+.info dt{flex:none;width:34px;font-size:13px;color:var(--sub);padding-top:2px}
+.info dd{font-weight:700}
+.info dd small{display:block;font-weight:400;color:var(--sub);font-size:13.5px}
+.dday{display:inline-block;margin-left:6px;padding:0 9px;border-radius:999px;background:var(--soft);color:var(--violet);font-size:12px;line-height:22px;vertical-align:1px}
+.map{margin-top:12px;border-radius:22px;overflow:hidden;background:var(--card);padding:8px}
+.map [data-nlf-map]{border-radius:16px;overflow:hidden;--m-bg:#F7F5FF;--m-block:#EEEAFB;--m-park:#DDF3E6;--m-public:#ECE9F7;--m-road:#FFFFFF;--m-road-edge:#E2DCF5;--m-text:#2B2440;--m-text-sub:#7A7396;--m-park-text:#3F9D74;--m-accent:#6E56CF;--m-target:rgba(110,86,207,.15);--m-bus:#FF7A9A}
+.form{margin-top:16px;padding:20px 18px;border-radius:22px;background:var(--card)}
+.field{display:block;margin-bottom:16px}
+.field > span{display:block;margin-bottom:7px;font-size:13px;font-weight:700;color:var(--sub)}
+.field input,.field select{width:100%;height:50px;padding:0 14px;border-radius:14px;border:2px solid var(--line);background:var(--soft);outline:none;font-size:16px;-webkit-appearance:none;appearance:none}
+.field input:focus,.field select:focus{border-color:var(--violet)}
+.type-chip{display:inline-flex;align-items:center;gap:6px;margin-bottom:16px;padding:7px 12px;border-radius:999px;background:var(--soft);font-size:13px;font-weight:700;color:var(--violet)}
+.form .big-btn{margin-top:4px}
+.note{margin-top:10px;text-align:center;font-size:12.5px;color:var(--sub)}
+.done{margin-top:16px;padding:20px;border-radius:22px;background:var(--card);text-align:center;font-weight:700}
+.contacts{margin-top:14px;list-style:none;display:grid;gap:8px}
+.contacts li{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:18px;background:var(--card)}
+.contacts b{margin-right:6px}
+.contacts .role{font-size:13px;color:var(--sub)}
+.contacts nav{display:flex;gap:6px}
+.contacts nav a{padding:7px 13px;border-radius:999px;background:var(--soft);color:var(--violet);font-size:13px;font-weight:700}
+.end{margin-top:40px;text-align:center}
+.end p{font-family:var(--display);font-size:20px}
+.end small{display:block;margin-top:22px;font-size:12px;color:var(--sub)}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:50;overflow:hidden}
+.confetti i{position:absolute;top:30%;left:50%;width:9px;height:14px;border-radius:2px;animation:burst 1.4s var(--ease) forwards}
+@keyframes burst{to{transform:translate(var(--x),var(--y)) rotate(var(--r));opacity:0}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <div class="blobs" aria-hidden="true"><i></i><i></i><i></i></div>
+  <button class="bgm" type="button" data-nlf="bgm" aria-pressed="false" aria-label="배경음악 켜기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></button>
+
+  <section class="screen intro is-active" id="intro">
+    <span class="badge">휴식 유형 테스트 · 2026 새생명축제</span>
+    <div class="orbit" aria-hidden="true"><span>🔋</span><span>🍚</span><span>🌙</span><span>🧭</span></div>
+    <h1><span class="guest"></span>요즘 당신에게<br><em>가장 필요한 휴식</em>은?</h1>
+    <p class="lede">4개의 질문으로 알아보는 나의 쉼 유형</p>
+    <button class="big-btn" type="button" id="start">테스트 시작하기</button>
+    <p class="meta">약 1분 · 결과에 맞는 주말 처방전을 드려요</p>
+    <button class="skip" type="button" id="skip">테스트 건너뛰고 초대장 보기</button>
+  </section>
+
+  <section class="screen quiz" id="quiz" aria-live="polite">
+    <div class="quiz-top">
+      <button class="back" type="button" id="back" aria-label="이전 질문"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <div class="bar" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1"><i id="bar"></i></div>
+      <span class="qno" id="qno">1 / 4</span>
+    </div>
+    <div class="q-card" id="qCard">
+      <div class="q-emoji" id="qEmoji" aria-hidden="true"></div>
+      <h2 class="question" id="question"></h2>
+      <div class="answers" id="answers"></div>
+    </div>
+  </section>
+
+  <section class="screen loading" id="loading">
+    <div class="spinner" aria-hidden="true"></div>
+    <p id="loadingText">당신의 답을 살펴보는 중…</p>
+    <small>잠시만 기다려 주세요</small>
+  </section>
+
+  <section class="screen result" id="result">
+    <p class="r-eyebrow"><span class="guest"></span>당신의 휴식 유형은</p>
+    <div class="r-card">
+      <div class="r-emoji" id="rEmoji"></div>
+      <h2 class="r-name" id="rName"></h2>
+      <p class="r-summary" id="rSummary"></p>
+    </div>
+    <p class="r-desc" id="rDesc"></p>
+    <div class="r-block"><h3>지금 당신에게 필요한 것</h3><ul class="r-needs" id="rNeeds"></ul></div>
+    <div class="r-block"><h3>함께 쉬면 좋은 유형</h3><div class="r-match"><span id="mEmoji"></span><div><b id="mName"></b><small id="mSummary"></small></div></div></div>
+    <div class="row-btns">
+      <button class="btn solid" type="button" id="shareResult">결과 공유하기</button>
+      <button class="btn" type="button" id="retry">다시 하기</button>
+    </div>
+
+    <div class="rx" id="rx">
+      <div class="rx-head"><b>당신을 위한 주말 처방전</b><span>Rx</span></div>
+      <dl>
+        <div><dt>처방</dt><dd>2026 새생명축제</dd></div>
+        <div><dt>일시</dt><dd>10월 25일 주일 오후 1시 50분</dd></div>
+        <div><dt>장소</dt><dd>의정부비전교회</dd></div>
+        <div><dt>용법</dt><dd id="rxUsage"></dd></div>
+        <div><dt>효능</dt><dd id="rxEffect"></dd></div>
+      </dl>
+      <p class="rx-sign">처방 · 의정부비전교회 청년부</p>
+      <span class="stamp" aria-hidden="true">무료<br>처방</span>
+    </div>
+    <div class="verse">
+      <p>어떤 유형이든, 당신은 이미 충분히 소중해요</p>
+      <blockquote>네가 내 눈에 보배롭고 존귀하며<br>내가 너를 사랑하였은즉</blockquote>
+      <cite>이사야 43:4</cite>
+    </div>
+  </section>
+
+  <section class="invite" id="invite" hidden>
+    <h2 class="sec-title"><small>INVITATION</small>처방전 받으러 오세요</h2>
+    <figure class="photo"><img src="photo1.jpg" alt="함께 웃고 있는 청년부 단체 사진" loading="lazy"></figure>
+    <p style="margin-top:14px;color:var(--sub)">지친 당신에게 꼭 맞는 쉼을 준비했어요. 맛있는 것도, 따뜻한 사람들도 기다리고 있어요. 편한 마음으로 놀러 오세요!</p>
+    <dl class="info">
+      <div><dt>일시</dt><dd>2026년 10월 25일 주일<span class="dday" data-nlf-dday></span><small>오후 1시 50분</small></dd></div>
+      <div><dt>장소</dt><dd>의정부비전교회<small>의정부시 용민로122번길 50</small></dd></div>
+    </dl>
+    <div class="row-btns">
+      <button class="btn violet" type="button" data-nlf="calendar">캘린더에 추가</button>
+      <button class="btn" type="button" data-nlf="copy-address">주소 복사</button>
+    </div>
+
+    <h2 class="sec-title"><small>LOCATION</small>오시는 길</h2>
+    <div class="map"><div data-nlf-map></div></div>
+    <div class="row-btns">
+      <a class="btn" data-nlf-link="naver">네이버 지도</a>
+      <a class="btn" data-nlf-link="kakao">카카오맵</a>
+    </div>
+
+    <h2 class="sec-title"><small>RSVP</small>처방전 받으러 갈게요!</h2>
+    <form class="form" id="form">
+      <span class="type-chip" id="typeChip" hidden></span>
+      <label class="field"><span>이름</span><input name="name" required maxlength="20" autocomplete="name" placeholder="성함을 적어 주세요"></label>
+      <label class="field"><span>함께 오는 인원 (본인 포함)</span>
+        <select name="count"><option>1명</option><option>2명</option><option>3명</option><option>4명</option><option>5명 이상</option></select>
+      </label>
+      <button class="big-btn" type="submit">참석 알리기</button>
+      <p class="note">버튼을 누르면 박성진 강도사님께 보낼 문자가 준비돼요.</p>
+    </form>
+    <p class="done" id="done" hidden></p>
+
+    <h2 class="sec-title"><small>CONTACT</small>궁금한 게 있다면</h2>
+    <ul class="contacts">
+      <li><div><b>박성진</b><span class="role">강도사</span></div><nav><a href="tel:010-5501-4328">전화</a><a href="sms:010-5501-4328">문자</a></nav></li>
+      <li><div><b>이일규</b><span class="role">장로</span></div><nav><a href="tel:010-5746-1735">전화</a><a href="sms:010-5746-1735">문자</a></nav></li>
+    </ul>
+    <div class="end">
+      <p>친구에게도 테스트 보내기</p>
+      <button class="big-btn" type="button" data-nlf="share" style="margin-top:14px">테스트 공유하기</button>
+      <small>© 2026 의정부비전교회 청년부</small>
+    </div>
+  </section>
+</div>
+
+<script src="invite.js"></script>
+<script>
+(() => {
+  NLF.music('bgm.mp3');
+  if (NLF.guest) document.querySelectorAll('.guest').forEach((el) => { el.textContent = `${NLF.guest}님, `; });
+
+  const TYPES = {
+    R: { emoji: '🔋', name: '방전 직전 보조배터리형', summary: '남들 충전해 주느라 정작 나는 1%', color: '#E0901F', bg: '#FFF1DC',
+      desc: '늘 누군가를 챙기고, 해야 할 일부터 끝내느라 정작 나를 충전할 시간은 없었죠. 지금 당신에게 필요한 건 아무것도 증명하지 않아도 되는 완전한 쉼이에요.',
+      needs: ['알람 없는 아침', '“고생했어” 한마디', '아무 말 없이 곁에 있어 주는 사람'],
+      usage: '편한 옷차림으로, 아무 준비 없이 와서 앉아 있기', effect: '몸과 마음의 배터리 100% 충전', match: 'T' },
+    T: { emoji: '🍚', name: '집밥이 그리운 온기형', summary: '배보다 마음이 더 고픈 요즘', color: '#E2577A', bg: '#FFE6EE',
+      desc: '바쁘게 지내다 보면 “밥 먹었어?” 한마디가 그리운 날이 있죠. 지금 당신에게 필요한 건 같은 식탁에 둘러앉아 마음 편히 웃을 수 있는 사람들이에요.',
+      needs: ['따뜻한 밥 한 끼', '편하게 웃을 수 있는 자리', '내 이야기를 들어 주는 친구'],
+      usage: '친구 손 꼭 잡고 함께 오기', effect: '외로움 해소, 새 친구 +∞', match: 'R' },
+    F: { emoji: '🌙', name: '새벽 3시 생각 많은 감성형', summary: '머릿속에 열린 탭이 너무 많아요', color: '#4F6FE0', bg: '#E7EDFF',
+      desc: '잠들기 전, 생각이 꼬리에 꼬리를 무는 당신. 지금 당신에게 필요한 건 복잡한 마음을 내려놓고 조용히 위로받는 시간이에요.',
+      needs: ['잔잔한 음악', '마음을 정리할 여백', '나를 판단하지 않는 위로'],
+      usage: '마음속 고민 하나 들고 와서 가볍게 내려놓기', effect: '생각 정리, 마음의 평안', match: 'E' },
+    E: { emoji: '🧭', name: '일상 탈출이 필요한 여행자형', summary: '똑같은 하루에 새로운 장면이 필요해요', color: '#169C83', bg: '#DFF6F0',
+      desc: '반복되는 하루에 조금 지친 당신. 지금 당신에게 필요한 건 익숙한 동네에서 만나는 낯설고 따뜻한 경험이에요.',
+      needs: ['처음 가 보는 공간', '새로운 사람들', '예상하지 못한 설렘'],
+      usage: '호기심 하나 챙겨서 가볍게 들러 보기', effect: '일상에 새로운 장면 추가', match: 'F' },
+  };
+  const QUESTIONS = [
+    { emoji: '🌙', q: '금요일 밤, 드디어 일주일이 끝났다!\n가장 먼저 하고 싶은 건?', a: [
+      ['🛏️', '씻고 바로 침대로 다이빙', 'R'], ['🍜', '친구 불러서 맛있는 거 먹기', 'T'],
+      ['☕', '조용한 카페에서 혼자만의 시간', 'F'], ['🚗', '어디로든 훌쩍 떠나기', 'E']] },
+    { emoji: '⛅', q: '요즘 내 마음을\n날씨로 표현한다면?', a: [
+      ['☁️', '잔뜩 흐림, 몸도 마음도 무거워요', 'R'], ['🌤️', '맑은데 가끔 쓸쓸해요', 'T'],
+      ['🌫️', '안개, 어디로 가야 할지 모르겠어요', 'F'], ['🌈', '지루한 맑음, 새로운 게 필요해요', 'E']] },
+    { emoji: '💬', q: '지금 누군가 건네주면\n가장 힘이 날 한마디는?', a: [
+      ['😌', '“오늘은 아무것도 안 해도 돼”', 'R'], ['🥢', '“밥 먹었어? 같이 먹자!”', 'T'],
+      ['🫶', '“네가 가는 길, 틀리지 않았어”', 'F'], ['✨', '“이번 주말에 새로운 데 가 볼래?”', 'E']] },
+    { emoji: '🎧', q: '쉬는 날,\n가장 듣고 싶은 소리는?', a: [
+      ['🌧️', '이불 속에서 듣는 빗소리', 'R'], ['😆', '친구들의 웃음소리', 'T'],
+      ['🎹', '새벽의 잔잔한 피아노', 'F'], ['🌊', '탁 트인 바다의 파도 소리', 'E']] },
+  ];
+
+  const screens = ['intro', 'quiz', 'loading', 'result'].reduce((m, id) => ({ ...m, [id]: document.getElementById(id) }), {});
+  const invite = document.getElementById('invite');
+  function show(id) {
+    Object.values(screens).forEach((s) => s.classList.toggle('is-active', s.id === id));
+    window.scrollTo({ top: 0 });
+  }
+
+  let step = 0;
+  let picks = [];
+  let resultKey = null;
+  const qCard = document.getElementById('qCard');
+  function renderQuestion() {
+    const q = QUESTIONS[step];
+    document.getElementById('qEmoji').textContent = q.emoji;
+    const h = document.getElementById('question');
+    h.textContent = q.q;
+    h.style.whiteSpace = 'pre-line';
+    document.getElementById('qno').textContent = `${step + 1} / ${QUESTIONS.length}`;
+    document.getElementById('bar').style.width = `${((step + 1) / QUESTIONS.length) * 100}%`;
+    document.querySelector('.bar').setAttribute('aria-valuenow', step + 1);
+    const box = document.getElementById('answers');
+    box.innerHTML = '';
+    q.a.forEach(([em, text, key]) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'answer';
+      if (picks[step] === key) b.classList.add('is-picked');
+      const e = document.createElement('span');
+      e.className = 'em';
+      e.textContent = em;
+      e.setAttribute('aria-hidden', 'true');
+      b.append(e, document.createTextNode(text));
+      b.addEventListener('click', () => choose(key, b));
+      box.appendChild(b);
+    });
+    qCard.classList.remove('is-swap');
+    void qCard.offsetWidth;
+    qCard.classList.add('is-swap');
+  }
+  function choose(key, btn) {
+    picks[step] = key;
+    btn.classList.add('is-picked');
+    setTimeout(() => {
+      if (step < QUESTIONS.length - 1) {
+        step += 1;
+        renderQuestion();
+      } else {
+        analyze();
+      }
+    }, 260);
+  }
+  function scoreOf(list) {
+    const count = { R: 0, T: 0, F: 0, E: 0 };
+    list.forEach((k) => { count[k] += 1; });
+    const max = Math.max(...Object.values(count));
+    const top = Object.keys(count).filter((k) => count[k] === max);
+    return top.length === 1 ? top[0] : (top.includes(list[2]) ? list[2] : top[0]);
+  }
+  function analyze() {
+    show('loading');
+    const texts = ['당신의 답을 살펴보는 중…', '휴식 패턴을 분석하는 중…', '꼭 맞는 처방을 고르는 중…'];
+    let i = 0;
+    const lt = document.getElementById('loadingText');
+    lt.textContent = texts[0];
+    const timer = setInterval(() => { i += 1; lt.textContent = texts[i % texts.length]; }, 650);
+    setTimeout(() => {
+      clearInterval(timer);
+      showResult(scoreOf(picks));
+    }, 1900);
+  }
+  function showResult(key) {
+    resultKey = key;
+    const t = TYPES[key];
+    const m = TYPES[t.match];
+    const app = document.getElementById('app');
+    app.style.setProperty('--c', t.color);
+    app.style.setProperty('--cbg', t.bg);
+    document.getElementById('rEmoji').textContent = t.emoji;
+    document.getElementById('rName').textContent = t.name;
+    document.getElementById('rSummary').textContent = t.summary;
+    document.getElementById('rDesc').textContent = t.desc;
+    const needs = document.getElementById('rNeeds');
+    needs.innerHTML = '';
+    t.needs.forEach((n) => { const li = document.createElement('li'); li.textContent = n; needs.appendChild(li); });
+    document.getElementById('mEmoji').textContent = m.emoji;
+    document.getElementById('mName').textContent = m.name;
+    document.getElementById('mSummary').textContent = m.summary;
+    document.getElementById('rxUsage').textContent = t.usage;
+    document.getElementById('rxEffect').textContent = t.effect;
+    const chip = document.getElementById('typeChip');
+    chip.textContent = `${t.emoji} 나의 휴식 유형 · ${t.name}`;
+    chip.hidden = false;
+    show('result');
+    invite.hidden = false;
+    NLF.reveal();
+    confetti(t.color);
+  }
+  function confetti(color) {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const box = document.createElement('div');
+    box.className = 'confetti';
+    const palette = [color, '#6E56CF', '#FFB547', '#FF7A9A', '#2EC4A6'];
+    for (let i = 0; i < 26; i += 1) {
+      const p = document.createElement('i');
+      const ang = Math.random() * Math.PI * 2;
+      const dist = 120 + Math.random() * 180;
+      p.style.background = palette[i % palette.length];
+      p.style.setProperty('--x', `${Math.cos(ang) * dist}px`);
+      p.style.setProperty('--y', `${Math.sin(ang) * dist + 160}px`);
+      p.style.setProperty('--r', `${Math.random() * 720 - 360}deg`);
+      p.style.animationDelay = `${Math.random() * 0.15}s`;
+      box.appendChild(p);
+    }
+    document.body.appendChild(box);
+    setTimeout(() => box.remove(), 1800);
+  }
+
+  document.getElementById('start').addEventListener('click', () => {
+    step = 0;
+    picks = [];
+    show('quiz');
+    renderQuestion();
+  });
+  document.getElementById('back').addEventListener('click', () => {
+    if (step === 0) { show('intro'); return; }
+    step -= 1;
+    renderQuestion();
+  });
+  document.getElementById('retry').addEventListener('click', () => {
+    step = 0;
+    picks = [];
+    show('quiz');
+    renderQuestion();
+  });
+  document.getElementById('skip').addEventListener('click', () => {
+    invite.hidden = false;
+    NLF.reveal();
+    invite.scrollIntoView({ behavior: 'smooth' });
+  });
+  document.getElementById('shareResult').addEventListener('click', () => {
+    const t = TYPES[resultKey];
+    NLF.share(`나의 휴식 유형은 ‘${t.name}’ ${t.emoji}\n${t.summary}\n너에게 필요한 휴식은 뭘까? 테스트 해 보기 👇`);
+  });
+
+  const form = document.getElementById('form');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = form.elements.name.value.trim();
+    if (!name) return;
+    await NLF.rsvp('참석 신청', [['이름', name], ['인원', form.elements.count.value], ['휴식 유형', resultKey ? TYPES[resultKey].name : '']]);
+    form.hidden = true;
+    const done = document.getElementById('done');
+    done.textContent = `${name}님, 처방전 접수 완료! 10월 25일에 만나요.`;
+    done.hidden = false;
+  });
+})();
+</script>
+</body>
+</html>
