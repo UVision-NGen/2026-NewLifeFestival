@@ -46,8 +46,10 @@
     ? document.addEventListener('DOMContentLoaded', fn, { once: true })
     : fn());
 
-  // 이름을 붙여 보낸 링크(예: ?to=민수)라면 그 이름. 화면에는 textContent로만 넣습니다.
-  const guest = (new URLSearchParams(location.search).get('to') || '')
+  // 이름을 붙여 보낸 링크(?to=이름)라면 그 이름. 화면에는 textContent로만 넣습니다.
+  // 주소창에 한글이 보이지 않도록 메인 페이지는 이름을 두 번 % 인코딩해 보내므로 한 번 더 풀어 줍니다.
+  const decodeName = (v) => { try { return decodeURIComponent(v); } catch { return v; } };
+  const guest = decodeName(new URLSearchParams(location.search).get('to') || '')
     .replace(/[<>&"'`]/g, '').trim().slice(0, 12);
 
   function dday(now = new Date()) {

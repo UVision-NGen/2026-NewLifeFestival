@@ -122,7 +122,8 @@ h1{margin-top:10px;font-size:clamp(28px,6vw,40px);line-height:1.25;letter-spacin
   const DEFAULT_HINT = toHint.textContent;
   // 초대장(invite.js)이 받아들이는 형태로 정리: 특수문자 제거, 최대 12자
   const guestName = () => toInput.value.replace(/[<>&"'`]/g, '').trim().slice(0, 12);
-  const withName = (url) => (guestName() ? `${url}?to=${encodeURIComponent(guestName())}` : url);
+  // 주소창·메신저에서 한글로 풀려 보이지 않도록 두 번 인코딩 (초대장에서 두 번 풀어 줌)
+  const withName = (url) => (guestName() ? `${url}?to=${encodeURIComponent(encodeURIComponent(guestName()))}` : url);
   function syncName() {
     const name = guestName();
     toClear.hidden = !toInput.value;
